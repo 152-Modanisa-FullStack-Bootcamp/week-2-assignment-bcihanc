@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header-menu></header-menu>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+
+import HeaderMenu from "@/components/HeaderMenu";
+import {FETCH_VIDEOS_ACTION} from "@/store";
+import {mapActions} from "vuex/dist/vuex.esm.browser";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HeaderMenu
+  },
+  methods: {
+    ...mapActions([FETCH_VIDEOS_ACTION])
+  },
+  mounted() {
+    this[FETCH_VIDEOS_ACTION]()
   }
 }
 </script>
@@ -21,8 +31,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
